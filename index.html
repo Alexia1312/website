@@ -1,194 +1,216 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Alexia von Salomon</title>
+<meta name="description" content="Alexia von Salomon – Learning Experience Designerin in Berlin.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400;12..96,75..100,500;12..96,75..100,800&family=Instrument+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --ink:#000; --muted:#5b5b5b; --line:#e3e3e3; --bg:#fff;
-    --c-Ausstellungen:#f7b9a8; --c-Lehre:#f3d36b; --c-Vorträge:#b8d8c2; --c-Publikationen:#c9c3f0; --c-Projekte:#a9cbe8;
-    --font:'Bricolage Grotesque', system-ui, sans-serif;
-    --body:'Instrument Sans', system-ui, sans-serif;
-  }
+  :root{--ink:#111;--muted:#5a5a66;--line:rgba(17,17,17,.12);--violet:#6d28d9;--serif:'Gloock',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
   *{box-sizing:border-box}
-  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-optical-sizing:auto;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-underline-offset:4px;text-decoration-thickness:1.5px}
-  a:hover{text-decoration-thickness:3px}
-  a:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
-  .skip{position:absolute;left:-999px}
-  .skip:focus{left:16px;top:16px;background:#fff;padding:8px 12px}
-  .wrap{max-width:1280px;margin:0 auto;padding:0 32px}
-  .cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:0 72px;align-items:start}
-  .cols > .right > section:first-child{margin-top:56px}
-  @media (max-width:960px){ .cols{grid-template-columns:1fr} .cols > .right > section:first-child{margin-top:72px} }
+  html{background:#fff;scroll-behavior:smooth}
+  body{margin:0;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden}
+  html[data-lang="de"] [lang="en"], html[data-lang="en"] [lang="de"]{display:none}
+  a{color:inherit;text-underline-offset:4px}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--violet);outline-offset:3px}
+  .skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;background:#fff;padding:8px 12px;z-index:9}
+  .glow{position:absolute;z-index:-1;pointer-events:none;border-radius:50%;filter:blur(100px)}
+  .g1{width:760px;height:520px;right:-120px;top:60px;background:#b98af2;opacity:.55}
+  .g2{width:560px;height:420px;left:-220px;top:520px;background:#e2cffb;opacity:.7}
+  .g3{width:620px;height:480px;right:-260px;top:1500px;background:#d6bdf8;opacity:.5}
+  .hero{position:relative}
+  .lead .sub2{display:block;margin-top:clamp(24px,3vw,40px);font-family:var(--sans);font-size:clamp(19px,1.9vw,26px);line-height:1.5;letter-spacing:0;color:#33333b;max-width:30em}
+  .badge{position:absolute;right:0;bottom:clamp(40px,6vw,90px);width:150px;height:150px;animation:spin 26s linear infinite}
+  .badge text{font:600 11.5px var(--sans);letter-spacing:.24em;fill:var(--ink)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){.badge{animation:none}}
+  @media (max-width:900px){.badge{display:none}}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,64px)}
 
-  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0}
-  .top .me{font-weight:500;font-size:17px;text-decoration:none}
-  .top a{display:inline-flex;align-items:center;min-height:44px}
+  nav.top .wrap{display:flex;align-items:center;justify-content:flex-end;gap:clamp(16px,4vw,48px);min-height:88px;flex-wrap:wrap}
+  nav.top a{text-decoration:none;font-size:15px;display:inline-flex;align-items:center;min-height:44px}
+  nav.top a:hover{color:var(--violet)}
+  nav.top .me{font-family:var(--serif);font-size:20px}
+  .spacer{flex:1}
+  .lang{display:inline-flex;border:1px solid var(--ink);border-radius:999px;padding:2px}
+  .lang button{appearance:none;border:0;background:transparent;font:500 13px var(--sans);color:var(--ink);min-width:44px;min-height:32px;border-radius:999px;cursor:pointer}
+  .lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
 
-  header{padding:56px 0 0}
-  h1,h2,h3,.year,.sw,.top .me{font-family:var(--font)}
-  h1{margin:0 0 32px;font-weight:800;font-size:clamp(52px,6.4vw,92px);line-height:.88;letter-spacing:-.045em;font-variation-settings:"wdth" 78}
-  .intro p{margin:0 0 16px;font-size:18px;line-height:1.6;max-width:36em}
+  .hero{padding:clamp(72px,14vw,190px) 0 clamp(72px,12vw,160px)}
+  h1{margin:0;font-weight:400}
+  .role{margin:clamp(24px,3vw,36px) 0 0;font-size:clamp(16px,1.4vw,18px);font-weight:500;color:var(--muted)}
+  .lead{margin:0;font-family:var(--serif);font-size:clamp(38px,5.4vw,76px);line-height:1.08;letter-spacing:0;color:var(--ink);max-width:13em}
 
-  section{margin-top:72px}
-  h2{margin:0 0 8px;font-size:34px;font-weight:800;letter-spacing:-.025em;font-variation-settings:"wdth" 85}
-  h3{margin:36px 0 0;font-size:19px;font-weight:500;padding-bottom:10px;border-bottom:2px solid var(--ink)}
-
+  section.block{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:24px clamp(32px,6vw,96px);border-top:1px solid var(--ink);padding:40px 0 72px}
+  h2{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(32px,3.4vw,44px);line-height:1.05}
+  .about p{font-size:18px;line-height:1.65;margin:0 0 16px;max-width:38em}
+  h3{font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--muted);margin:32px 0 0;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .block > div > h3:first-child{margin-top:6px}
   .entries{list-style:none;margin:0;padding:0}
-  .entries li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:4px 20px;padding:14px 0;border-bottom:1px solid var(--line);font-size:17px;line-height:1.45}
+  .entries li{display:grid;grid-template-columns:110px minmax(0,1fr);gap:4px 20px;padding:14px 0;border-bottom:1px solid var(--line);font-size:16px;line-height:1.5}
+  .when{font-size:16px}
   .when{color:var(--muted);font-variant-numeric:tabular-nums}
-  .sub{display:block;color:var(--muted);font-size:15px;margin-top:2px}
+  .sub{display:block;color:var(--muted);font-size:14.5px;margin-top:2px}
+  .sub a,.acts a{color:var(--violet)}
+  .langs{font-size:16px;line-height:1.5;margin:14px 0 0}
 
-  .swatches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:24px 0 8px}
-  .sw{appearance:none;border:2px solid transparent;border-radius:16px;min-height:84px;padding:14px 16px;text-align:left;display:flex;align-items:flex-end;font-family:var(--font);font-size:17px;font-weight:500;color:var(--ink);cursor:pointer;transition:transform .18s ease,border-color .18s ease}
-  .sw:hover{transform:translateY(-3px)}
-  .sw[aria-pressed="true"]{border-color:var(--ink);transform:translateY(-6px)}
-  .hint{margin:4px 0 0;font-size:14px;color:var(--muted)}
-
-  .year{margin:32px 0 0;font-size:19px;font-weight:800;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+  .filter{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 8px}
+  .chip{appearance:none;font:500 13px var(--sans);min-height:36px;padding:0 16px;border-radius:999px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+  .chip:hover{background:rgba(109,40,217,.07)}
+  .chip[aria-pressed="true"]{background:var(--ink);color:#fff}
   .acts{list-style:none;margin:0;padding:0}
-  .acts li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:17px;line-height:1.45}
-  .dot{width:12px;height:12px;border-radius:4px;margin-top:6px}
-  .kind{color:var(--muted)}
-  .acts a{white-space:nowrap}
+  .acts li{display:grid;grid-template-columns:110px minmax(0,1fr);gap:4px 20px;padding:14px 0;border-bottom:1px solid var(--line);font-size:16px;line-height:1.5}
+  .acts .y{color:var(--muted);font-variant-numeric:tabular-nums}
+  .acts li.cont{border-top:0}
+  .kind{display:block;font-size:13px;color:var(--muted)}
+  .acts a{text-decoration:none;white-space:nowrap}
+  .acts a:hover{text-decoration:underline}
+  .more{appearance:none;margin-top:20px;font:500 15px var(--sans);background:none;border:0;border-bottom:1px solid var(--ink);padding:6px 0;cursor:pointer;color:var(--ink);min-height:44px}
 
-  footer{margin-top:96px;padding:24px 0 48px;border-top:2px solid var(--ink);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:15px}
-  footer a{display:inline-flex;align-items:center;min-height:44px}
+  .projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 48px}
+  .proj{border-top:1px solid var(--line);padding-top:18px}
+  .pmeta{margin:0;font-size:13px;color:var(--muted)}
+  .ptitle{font-family:var(--serif);font-weight:400;font-size:clamp(22px,2vw,28px);line-height:1.15;color:var(--ink);letter-spacing:0;margin:10px 0 12px;padding:0;border:0}
+  .proj p:last-child{margin:0;font-size:16px;line-height:1.6;color:#33333b}
+  .contact p{font-family:var(--serif);font-size:clamp(26px,3vw,38px);line-height:1.2;margin:0 0 20px;max-width:20em}
+  .btn{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border-radius:999px;background:var(--ink);color:#fff;text-decoration:none;font-weight:500}
+  .btn:hover{background:var(--violet)}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:24px;padding-bottom:40px;font-size:14px;color:var(--muted);border-top:1px solid var(--line)}
 
-  @media (max-width:600px){
+  @media (max-width:760px){
+    .projects{grid-template-columns:1fr}
+    .acts li{grid-template-columns:1fr;gap:2px} .acts .y:empty{display:none}
+    .spacer{display:none} nav.top .me{width:100%}
+    section.block{grid-template-columns:1fr}
     .entries li{grid-template-columns:1fr;gap:2px}
-    .swatches{grid-template-columns:1fr 1fr}
+    nav.top .wrap{justify-content:space-between}
   }
-  @media (prefers-reduced-motion:reduce){ .sw{transition:none} .sw:hover,.sw[aria-pressed="true"]{transform:none} }
 </style>
 </head>
 <body>
-<a class="skip" href="#content">Zum Inhalt springen</a>
-<div class="wrap">
-  <nav class="top" aria-label="Kopfzeile">
+<div class="glow g1" aria-hidden="true"></div><div class="glow g2" aria-hidden="true"></div><div class="glow g3" aria-hidden="true"></div>
+<a class="skip" href="#content"><span lang="de">Zum Inhalt springen</span><span lang="en">Skip to content</span></a>
+
+<nav class="top" aria-label="Navigation">
+  <div class="wrap">
     <a class="me" href="#content">Alexia von Salomon</a>
-    <a href="https://www.linkedin.com/in/alexia-von-salomon-b0ab8221b/">Kontakt über LinkedIn</a>
-  </nav>
-
-  <div class="cols">
-  <div class="left">
-  <header id="content">
-    <h1>Alexia von<br>Salomon</h1>
-    <div class="intro">
-      <p>Ich gestalte Wege, wie Menschen lernen und sich beteiligen können. Manchmal mit digitalen Tools, manchmal in Workshops und oft irgendwo dazwischen.</p>
-      <p>Am Education Innovation Lab übersetze ich komplexe Themen wie Futures Thinking oder Demokratie in Formate, die für Menschen wirklich Sinn ergeben. Ob ich Mitmach-Formate für das Futurium Lab kuratiere oder Demokratie-Produkte für Niedersachsen entwickle: Mir ist wichtig, dass diese Ideen nicht auf dem Papier bleiben, sondern bei den Menschen ankommen, für die sie gedacht sind.</p>
-      <p>Als ChangemakerXchange Fellow beschäftige ich mich gerade intensiv mit AI for Good. Mich interessiert nicht der Hype, sondern die Praxis: mit Tools wie Claude und Cursor Dinge bauen, die ethisch und nützlich sind.</p>
-      <p>Studiert habe ich Produktdesign. Am meisten reizt es mich aber, die Systeme und Werkzeuge für Veränderung zu bauen.</p>
-      <p>Wenn du an Bildung oder KI arbeitest, gern über Zukünfte nachdenkst oder neue Formen der Zusammenarbeit suchst, freue ich mich, von dir zu hören.</p>
+    <span class="spacer"></span>
+    <a href="#about"><span lang="de">Über mich</span><span lang="en">About</span></a>
+    <a href="#news"><span lang="de">Aktuelles</span><span lang="en">Recent work</span></a>
+    <a href="#vita">Vita</a>
+    <a href="#contact"><span lang="de">Kontakt</span><span lang="en">Contact</span></a>
+    <div class="lang" role="group" aria-label="Sprache / Language">
+      <button type="button" data-set="de" aria-pressed="true">DE</button>
+      <button type="button" data-set="en" aria-pressed="false">EN</button>
     </div>
-  </header>
-
-  <section aria-labelledby="vita">
-    <h2 id="vita">Vita</h2>
-
-    <h3>Ausbildung</h3>
-    <ul class="entries">
-      <li><span class="when">2021–2023</span><span>M.A. Product Design<span class="sub">Kunsthochschule Berlin Weißensee. Masterthesis <a href="https://interaction.kh-berlin.de/portfolio/alexia-von-salomon_real_life_tutorial/">»Real Life Tutorial« ↗</a></span></span></li>
-      <li><span class="when">2016–2021</span><span>B.A. Industrial Design<span class="sub">Burg Giebichenstein Kunsthochschule Halle</span></span></li>
-    </ul>
-
-    <h3>Erfahrung</h3>
-    <ul class="entries">
-      <li><span class="when">seit 2023</span><span>Project Lead, Concept &amp; Learning Designer<span class="sub"><a href="https://education-innovation-lab.de/Uber-Uns-1">Education Innovation Lab, Berlin ↗</a>. Lernplattformen und digitale Lernformate von der Lernarchitektur bis zur Umsetzung, Mitglied im Strategiekomitee. Projekte u. a. Digitaler Bildungsbereich des Futurium, Digital Sparks</span></span></li>
-      <li><span class="when">seit 2019</span><span>Learning Designer, freiberuflich<span class="sub">Lernprogramme zu Digital Literacy, Making und Future Skills, u. a. für Goethe-Institut Ankara, Junge Tüftler*innen, Coding for Tomorrow, FABMOBIL und VDI</span></span></li>
-      <li><span class="when">2019–2020</span><span>Projektmitarbeit Partizipatives Design<span class="sub">die Baupiloten BDA, Berlin. Beteiligungsprozesse im Bildungsbau mit Schulen und Gemeinden</span></span></li>
-    </ul>
-
-    <h3>Stipendien &amp; Fellowships</h3>
-    <ul class="entries">
-      <li><span class="when">2025–2026</span><span>AI for Impact Cohort<span class="sub"><a href="https://changemakerxchange.org/changemaker/alexia-von-salomon/">ChangemakerXchange ↗</a>. Human-centered und ethische KI für Bildung und soziale Innovation</span></span></li>
-      <li><span class="when">2020–2023</span><span>Stipendiatin<span class="sub"><a href="https://www.studienstiftung.de/">Studienstiftung des deutschen Volkes ↗</a></span></span></li>
-    </ul>
-
-    <h3>Sprachen</h3>
-    <ul class="entries">
-      <li><span class="when">fließend</span><span>Deutsch (Muttersprache), Englisch, Französisch</span></li>
-      <li><span class="when">gut</span><span>Spanisch, Schwedisch</span></li>
-    </ul>
-  </section>
   </div>
+</nav>
 
-  <div class="right">
-  <section aria-labelledby="pub">
-    <h2 id="pub">Publikationen &amp; Aktivitäten</h2>
-    <div class="swatches" role="group" aria-label="Nach Art filtern" id="swatches"></div>
-    <p class="hint">Antippen zum Filtern, nochmal antippen zeigt wieder alles.</p>
-    <div id="years" aria-live="polite"></div>
-  </section>
-  </div>
-  </div>
+<main id="content">
+  <div class="wrap">
+    <header class="hero">
+      <svg class="badge" viewBox="0 0 150 150" aria-hidden="true"><defs><path id="c" d="M75,75 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0"/></defs><text lang="de"><textPath href="#c" textLength="360">LERNEN · GESTALTEN · ZUKÜNFTE ·</textPath></text><text lang="en"><textPath href="#c" textLength="360">LEARNING · DESIGN · FUTURES ·</textPath></text></svg>
+      <h1 class="lead"><span lang="de">Hi, ich bin Alexia,<br>Learning Experience Designerin in Berlin.<span class="sub2">Ich gestalte Wege, wie Menschen lernen und sich beteiligen können. Manchmal mit digitalen Tools, manchmal in Workshops und oft irgendwo dazwischen.</span></span><span lang="en">Hi, I’m Alexia,<br>a learning experience designer based in Berlin.<span class="sub2">I design ways for people to learn and participate. Sometimes through digital tools, sometimes in workshops and often somewhere in between.</span></span></h1>
+    </header>
 
-  <footer>
-    <span>Alexia von Salomon, Berlin</span>
-    <a href="https://www.linkedin.com/in/alexia-von-salomon-b0ab8221b/">Kontakt über LinkedIn</a>
-  </footer>
+    <section class="block" id="about" aria-labelledby="h-about">
+      <h2 id="h-about"><span lang="de">Über mich</span><span lang="en">About</span></h2>
+      <div class="about">
+        <p><span lang="de">Am Education Innovation Lab übersetze ich komplexe Themen wie Futures Thinking oder Demokratie in Formate, die für Menschen wirklich Sinn ergeben. Ob ich Workshops für das Futurium Lab kuratiere oder Demokratie-Produkte für Niedersachsen entwickle: Mir ist wichtig, dass diese Ideen nicht auf dem Papier bleiben, sondern bei den Menschen ankommen, für die sie gedacht sind.</span><span lang="en">Right now, I’m at Education Innovation LAB, figuring out how to turn complex topics like Futures Thinking or Democracy into formats that actually make sense to people. Whether it’s curating workshops for the Futurium Lab or building democracy products for Lower Saxony, I care about making sure these ideas don’t just stay on paper but actually reach the people they are meant for.</span></p>
+        <p><span lang="de">Als ChangemakerXchange Fellow beschäftige ich mich gerade intensiv mit AI for Good. Mich interessiert nicht der Hype, sondern die Praxis: mit Tools wie Claude und Cursor Dinge bauen, die ethisch und nützlich sind.</span><span lang="en">Lately, I’ve been deep-diving into AI for Good as a ChangemakerXchange Fellow. I’m not interested in the hype, but in the practical side, using tools like Claude and Cursor to build things that are both ethical and useful.</span></p>
+        <p><span lang="de">Studiert habe ich Produktdesign. Am meisten reizt es mich aber, die Systeme und Werkzeuge für Veränderung zu bauen.</span><span lang="en">I studied Product Design, but I’ve realized I’m most interested in building the systems and tools for change.</span></p>
+      </div>
+    </section>
+
+    <section class="block" id="news" aria-labelledby="h-news">
+      <h2 id="h-news"><span lang="de">Aktuelles</span><span lang="en">Recent work</span></h2>
+      <div>
+        <div class="filter" role="group" aria-label="Filter" id="chips"></div>
+        <ul class="acts" id="list" aria-live="polite"></ul>
+        <button type="button" class="more" id="more" aria-expanded="false"></button>
+      </div>
+    </section>
+
+    <section class="block" id="vita" aria-labelledby="h-vita">
+      <h2 id="h-vita">Vita</h2>
+      <div>
+<h3><span lang="de">Erfahrung</span><span lang="en">Experience</span></h3>
+<ul class="entries">
+<li><span class="when"><span lang="de">seit 2023</span><span lang="en">since 2023</span></span><span><span lang="de">Project Lead, Concept &amp; Learning Designer</span><span lang="en">Project Lead, Concept &amp; Learning Designer</span><span class="sub"><span lang="de"><a href="https://education-innovation-lab.de/Uber-Uns-1">Education Innovation Lab, Berlin</a>. Lernplattformen und digitale Lernformate, Mitglied im Strategiekomitee.</span><span lang="en"><a href="https://education-innovation-lab.de/Uber-Uns-1">Education Innovation Lab, Berlin</a>. Learning platforms and digital learning formats, member of the strategy committee.</span></span></span></li>
+<li><span class="when"><span lang="de">seit 2019</span><span lang="en">since 2019</span></span><span><span lang="de">Learning Designer, freiberuflich</span><span lang="en">Freelance Learning Designer</span><span class="sub"><span lang="de">Lernprogramme zu Digital Literacy, Making und Future Skills, u. a. für Goethe-Institut Ankara, Junge Tüftler*innen, Coding for Tomorrow, FABMOBIL und VDI</span><span lang="en">Learning programmes on digital literacy, making and future skills for Goethe-Institut Ankara, Junge Tüftler*innen, Coding for Tomorrow, FABMOBIL, VDI and others</span></span></span></li>
+<li><span class="when"><span lang="de">2019–2020</span><span lang="en">2019–2020</span></span><span><span lang="de">Projektmitarbeit Partizipatives Design</span><span lang="en">Participatory design</span><span class="sub"><span lang="de">die Baupiloten BDA, Berlin. Beteiligungsprozesse im Bildungsbau</span><span lang="en">die Baupiloten BDA, Berlin. Participatory processes in school architecture</span></span></span></li>
+</ul>
+<h3><span lang="de">Ausbildung</span><span lang="en">Education</span></h3>
+<ul class="entries">
+<li><span class="when"><span lang="de">2021–2023</span><span lang="en">2021–2023</span></span><span><span lang="de">M.A. Product Design</span><span lang="en">M.A. Product Design</span><span class="sub"><span lang="de">Kunsthochschule Berlin Weißensee. Masterthesis <a href="https://interaction.kh-berlin.de/portfolio/alexia-von-salomon_real_life_tutorial/">»Real Life Tutorial«</a></span><span lang="en">weißensee school of art and design berlin. Thesis <a href="https://interaction.kh-berlin.de/portfolio/alexia-von-salomon_real_life_tutorial/">»Real Life Tutorial«</a></span></span></span></li>
+<li><span class="when"><span lang="de">2016–2021</span><span lang="en">2016–2021</span></span><span><span lang="de">B.A. Industrial Design</span><span lang="en">B.A. Industrial Design</span><span class="sub"><span lang="de">Burg Giebichenstein Kunsthochschule Halle. Bachelorarbeit <a href="https://www.burg-halle.de/designing-in-digital-contexts/talkomat/">»Talkomat«</a></span><span lang="en">Burg Giebichenstein University of Art and Design Halle. Thesis <a href="https://www.burg-halle.de/designing-in-digital-contexts/talkomat/">»Talkomat«</a></span></span></span></li>
+</ul>
+<h3><span lang="de">Stipendien &amp; Fellowships</span><span lang="en">Scholarships &amp; fellowships</span></h3>
+<ul class="entries">
+<li><span class="when"><span lang="de">2025–2026</span><span lang="en">2025–2026</span></span><span><span lang="de">AI for Impact Fellowship</span><span lang="en">AI for Impact Fellowship</span><span class="sub"><span lang="de"><a href="https://changemakerxchange.org/changemaker/alexia-von-salomon/">ChangemakerXchange</a></span><span lang="en"><a href="https://changemakerxchange.org/changemaker/alexia-von-salomon/">ChangemakerXchange</a></span></span></span></li>
+<li><span class="when"><span lang="de">2020–2023</span><span lang="en">2020–2023</span></span><span><span lang="de">Stipendiatin</span><span lang="en">Scholar</span><span class="sub"><span lang="de"><a href="https://www.studienstiftung.de/">Studienstiftung des deutschen Volkes</a></span><span lang="en"><a href="https://www.studienstiftung.de/">German Academic Scholarship Foundation</a></span></span></span></li>
+</ul>
+<h3><span lang="de">Sprachen</span><span lang="en">Languages</span></h3>
+<p class="langs"><span lang="de">Deutsch (Muttersprache), Englisch und Französisch fließend, Spanisch und Schwedisch gut</span><span lang="en">German (native), English and French (fluent), Spanish and Swedish (good)</span></p>
 </div>
+    </section>
+
+    <section class="block contact" id="contact" aria-labelledby="h-contact">
+      <h2 id="h-contact"><span lang="de">Kontakt</span><span lang="en">Contact</span></h2>
+      <div>
+        <p><span lang="de">Du arbeitest an Bildung oder KI, denkst gern über Zukünfte nach oder suchst neue Formen der Zusammenarbeit? Ich freue mich, von dir zu hören.</span><span lang="en">Working on education or AI, love thinking about futures or new ways of collaborating? I’d love to chat.</span></p>
+        <a class="btn" href="https://www.linkedin.com/in/alexia-von-salomon-b0ab8221b/"><span lang="de">Schreib mir auf LinkedIn</span><span lang="en">Message me on LinkedIn</span></a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer><div class="wrap"><span>Alexia von Salomon, Berlin</span><a href="https://www.linkedin.com/in/alexia-von-salomon-b0ab8221b/">LinkedIn</a></div></footer>
 
 <script>
-  // [year, group, kind, title, venue, url]
-  const A = [
-    ['2027','Vorträge','Gastvortrag, geplant','MondayTalks','eLAB, Kunsthochschule Berlin Weißensee',''],
-    ['2026','Publikationen','Publikation über das Projekt Kim','Understanding data as material: Materializing data as neo-analog practice','Glaser, J., Sörries, P., Ness, T., Zwick, C. & Müller-Birn, C. In C. Mareis, C. Ott & B. Werner (Hrsg.), Matters of Activity: Rethinking Materiality, Rethinking Knowledge. Birkhäuser',''],
-    ['2026','Lehre','Lehrauftrag','Wissensvermittlung','Hochschule Coburg, Wintersemester 2026/27',''],
-    ['2026','Lehre','Workshop','Workshop für Studierende von Prof. Judith Glaser','THWS Würzburg-Schweinfurt, zu Gast im Education Innovation Lab',''],
-    ['2025','Ausstellungen','Installation','What if?! – Gestalte mit Future Wheels die Zukunft der Chancengleichheit','re:publica 25, STATION Berlin','https://25.re-publica.com/de/user/19190.html'],
-    ['2024','Lehre','Fortbildung','Zukunftsforschung in der Schule','Für Multiplikator*innen, Futurium Lab, Berlin',''],
-    ['2024','Publikationen','Publikation','Real Life Tutorial','German Design Graduates','https://germandesigngraduates.com/real-life-tutorial/'],
-    ['2023','Ausstellungen','Ausstellung','Master Class','Kunsthochschule Berlin Weißensee',''],
-    ['2022','Ausstellungen','Ausstellung','digital:sovereignty','Mit dem Projekt Kim, Kunsthochschule Berlin Weißensee, Juli','https://kh-berlin.incom.org/project/2561'],
-    ['2022','Ausstellungen','Ausstellung','digital:sovereignty','Mit dem Projekt Kim, Weizenbaum-Institut, Berlin, Februar','https://www.matters-of-activity.de/en/activities/7426/'],
-    ['2021','Publikationen','Publikation','Schweizer Materialarchiv','Juli','https://materialarchiv.ch/de/ma:referenceobject_9067dcfc-a6ae-4655-a930-1d954e79dfe1?type=all'],
-    ['2021','Ausstellungen','Ausstellung','sicher nicht','Burg Galerie, Halle',''],
-    ['2021','Publikationen','Artikel','Evonik Magazin ELEMENTS','Ausgabe 1/2021','https://elements.evonik.com/content/dam/elements/pdf-files/2021_1/ELEMENTS%2001_2021%20DE.pdf.coredownload.pdf'],
-    ['2020','Publikationen','Interview','Boxhorn Magazin','September',''],
-    ['2020','Vorträge','Podcast-Interview','Hurra Hurra – Ein Designpodcast der BURG','Burg Giebichenstein Kunsthochschule Halle','https://hurrahurra.podigee.io'],
-    ['2019','Vorträge','Paneldiskussion','Hurra Hurra Festival','Burg Giebichenstein Kunsthochschule Halle',''],
-    ['2019','Ausstellungen','Ausstellung','Täglich geöffnet','Spinnerei Leipzig',''],
-    ['2019','Ausstellungen','Ausstellung','Moyn Moyn Festival','August',''],
-    ['2019','Vorträge','Pecha Kucha','Lange Nacht der Wissenschaften','Halle',''],
-    ['2019','Ausstellungen','Ausstellung','Bio – Kunststoff oder beides?','Materialsammlung Burg Giebichenstein, Halle',''],
-    ['2019','Ausstellungen','Ausstellung','Täglich geöffnet','Burg Galerie, Halle',''],
-    ['2019','Publikationen','Publikation','Recycle, Reuse, Dispose','Januar',''],
-    ['2018','Publikationen','Publikation','Bundesministerium für Bildung und Forschung','Dezember',''],
-    ['2018','Ausstellungen','Ausstellung','Wir machen nach Halle','Kunsthalle Talstraße, Halle',''],
-    ['2018','Ausstellungen','Ausstellung','Moyn Moyn Festival','August','']
-  ];
-  const groups = ['Ausstellungen','Lehre','Vorträge','Publikationen'];
-  let active = null;
-  const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  const color = g => `var(--c-${g})`;
+  const A = [["2027", "talks", "Gastvortrag (geplant)", "Guest talk (upcoming)", "MondayTalks", "eLAB, Kunsthochschule Berlin Weißensee", "eLAB, weißensee school of art and design berlin", ""], ["2026", "pubs", "Publikation über das Projekt Kim", "Publication featuring the project Kim", "Understanding data as material: Materializing data as neo-analog practice", "Glaser, J., Sörries, P., Ness, T., Zwick, C. & Müller-Birn, C. In: Mareis, Ott & Werner (Hrsg.), Matters of Activity. Birkhäuser", "Glaser, J., Sörries, P., Ness, T., Zwick, C. & Müller-Birn, C. In: Mareis, Ott & Werner (eds.), Matters of Activity. Birkhäuser", ""], ["2026", "teaching", "Lehrauftrag", "Lectureship", "Wissensvermittlung", "Hochschule Coburg, Wintersemester 2026/27", "Coburg University of Applied Sciences, winter term 2026/27", ""], ["2025", "exhibitions", "Installation", "Installation", "What if?! – Gestalte mit Future Wheels die Zukunft der Chancengleichheit", "re:publica 25, STATION Berlin", "re:publica 25, STATION Berlin", "https://25.re-publica.com/de/user/19190.html"], ["2024", "pubs", "Publikation", "Publication", "Real Life Tutorial", "German Design Graduates", "German Design Graduates", "https://germandesigngraduates.com/real-life-tutorial/"], ["2023", "projects", "Masterarbeit", "Master thesis", "Real Life Tutorial", "Mixed-Reality-Lernerfahrung mit der HoloLens 2 für Lehrkräfte, Kunsthochschule Berlin Weißensee", "Mixed reality learning experience with HoloLens 2 for teachers, weißensee school of art and design berlin", "https://interaction.kh-berlin.de/portfolio/alexia-von-salomon_real_life_tutorial/"], ["2023", "exhibitions", "Ausstellung", "Exhibition", "Master Class", "Kunsthochschule Berlin Weißensee", "weißensee school of art and design berlin", ""], ["2023", "teaching", "Workshop", "Workshop", "Virtual Realities", "Telux, Weißwasser", "Telux, Weißwasser", ""], ["2023", "teaching", "Workshop", "Workshop", "Verein Deutscher Ingenieure (VDI)", "Stuttgart", "Association of German Engineers (VDI), Stuttgart", ""], ["2023", "talks", "Paneldiskussion", "Panel discussion", "Digital Literacy Design", "Social Design, Burg Giebichenstein Kunsthochschule Halle", "Social Design, Burg Giebichenstein University of Art and Design Halle", ""], ["2022", "teaching", "Lehrauftrag", "Lectureship", "Digital Literacies", "HBK Braunschweig, Design in the Digital Society", "HBK Braunschweig, Design in the Digital Society", ""], ["2022", "teaching", "Skillshare", "Skillshare", "Bildung für nachhaltige Entwicklung", "FabMobil", "FabMobil", ""], ["2022", "teaching", "Zukunftsworkshop", "Futures workshop", "Goethe-Institut Ankara", "Ankara", "Ankara", ""], ["2022", "exhibitions", "Ausstellung", "Exhibition", "digital:sovereignty", "Mit dem Projekt Kim, Kunsthochschule Berlin Weißensee", "With the project Kim, weißensee school of art and design berlin", "https://kh-berlin.incom.org/project/2561"], ["2022", "teaching", "Workshop", "Workshop", "Calliope & Makey Makey", "neuland21", "neuland21", ""], ["2022", "teaching", "Video-Tutorial", "Video tutorial", "Girls in Creative Tech: Zahnpasta-Quetscher modellieren", "Coding For Tomorrow, Initiative der Vodafone Stiftung", "Coding For Tomorrow, an initiative of Vodafone Foundation Germany", "https://coding-for-tomorrow.de/konzepte/zahnpasta-quetscher-modellieren/"], ["2022", "exhibitions", "Ausstellung", "Exhibition", "digital:sovereignty", "Mit dem Projekt Kim, Weizenbaum-Institut, Berlin", "With the project Kim, Weizenbaum Institute, Berlin", "https://www.matters-of-activity.de/en/activities/7426/"], ["2021", "projects", "Bachelorarbeit, mit Alina Weber", "Bachelor thesis, with Alina Weber", "Talkomat", "Interaktives Tool, das gesprochene Gedanken sichtbar macht, Burg Giebichenstein Kunsthochschule Halle", "Interactive tool that turns spoken thoughts into visuals, Burg Giebichenstein University of Art and Design Halle", "https://www.burg-halle.de/designing-in-digital-contexts/talkomat/"], ["2021", "pubs", "Publikation", "Publication", "Schweizer Materialarchiv", "Materialarchiv", "Swiss material archive", "https://materialarchiv.ch/de/ma:referenceobject_9067dcfc-a6ae-4655-a930-1d954e79dfe1?type=all"], ["2021", "exhibitions", "Ausstellung", "Exhibition", "sicher nicht – Arbeiten aus Kunst und Design", "Burg Galerie im Volkspark, Halle, und Spinnerei Leipzig", "Burg Galerie im Volkspark, Halle, and Spinnerei Leipzig", "https://www.burg-halle.de/en/university/exhibitions/a/sicher-nicht-arbeiten-aus-kunst-und-design-1/"], ["2021", "pubs", "Artikel", "Article", "Evonik Magazin ELEMENTS", "Ausgabe 1/2021", "Issue 1/2021", "https://elements.evonik.com/content/dam/elements/pdf-files/2021_1/ELEMENTS%2001_2021%20DE.pdf.coredownload.pdf"], ["2020", "pubs", "Interview", "Interview", "Boxhorn Magazin", "", " ", ""], ["2020", "talks", "Podcast-Interview", "Podcast interview", "Hurra Hurra – Ein Designpodcast der BURG", "Burg Giebichenstein Kunsthochschule Halle", "Burg Giebichenstein University of Art and Design Halle", "https://hurrahurra.podigee.io"], ["2019", "projects", "Mitinitiatorin", "Co-initiator", "Hurra Hurra – Festival für Designbildung im 21. Jahrhundert", "Burg Giebichenstein Kunsthochschule Halle, mit Paneldiskussion", "Burg Giebichenstein University of Art and Design Halle, incl. panel discussion", "https://si.burg-halle.de/projects/hurra-hurra"], ["2019", "exhibitions", "Ausstellung", "Exhibition", "täglich geöffnet", "boesner-Projektraum, Spinnerei Leipzig", "boesner project space, Spinnerei Leipzig", "https://www.burg-halle.de/hochschule/presse/pressemitteilungen/a/ausstellung-taeglich-geoeffnet-auf-der-spinnerei-leipzig/"], ["2019", "exhibitions", "Ausstellung", "Exhibition", "Moyn Moyn Festival", "", " ", ""], ["2019", "talks", "Pecha Kucha", "Pecha Kucha", "Lange Nacht der Wissenschaften", "Halle", "Halle", ""], ["2019", "exhibitions", "Ausstellung", "Exhibition", "Bio, Kunststoff – oder beides?", "Materialsammlung Burg Giebichenstein, Halle", "Material collection, Burg Giebichenstein, Halle", "https://www.burg-halle.de/hochschule/ausstellungen/a/bio-kunststoff-oder-beides/"], ["2019", "exhibitions", "Ausstellung", "Exhibition", "täglich geöffnet", "Burg Galerie im Volkspark, Halle", "Burg Galerie im Volkspark, Halle", "https://www.burg-halle.de/artikel/a/taeglich-geoeffnet-3/"], ["2019", "pubs", "Publikation", "Publication", "dispose reuse recycle", "Mit meinem Projekt »scho – the truly recyclable toothbrush«, Burg Giebichenstein", "Featuring my project »scho – the truly recyclable toothbrush«, Burg Giebichenstein", "https://www.burg-halle.de/publikation/publication/dispose-reuse-recycle"], ["2018", "pubs", "Publikation", "Publication", "Bundesministerium für Bildung und Forschung", "", " ", ""], ["2018", "exhibitions", "Ausstellung", "Exhibition", "Wir machen nach Halle", "Kunsthalle Talstraße, Halle", "Kunsthalle Talstraße, Halle", ""], ["2018", "exhibitions", "Ausstellung", "Exhibition", "Moyn Moyn Festival", "", " ", ""]];
+  const G = {exhibitions:['Ausstellungen','Exhibitions'],teaching:['Lehre','Teaching'],talks:['Vorträge','Talks'],pubs:['Publikationen','Publications'],projects:['Projekte','Projects']};
+  const RECENT = 2024;
+  let lang = 'de', active = null, showAll = false;
+  try { const s = localStorage.getItem('lang'); if (s === 'en' || s === 'de') lang = s; } catch(e) {}
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const i = () => lang === 'de' ? 0 : 1;
 
-  function renderSwatches(){
-    document.getElementById('swatches').innerHTML = groups.map(g =>
-      `<button type="button" class="sw" style="background:${color(g)}" data-g="${g}" aria-pressed="${g===active}">${g}</button>`).join('');
+  function render(){
+    document.documentElement.lang = lang; document.documentElement.dataset.lang = lang;
+    document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.set === lang));
+    document.getElementById('chips').innerHTML = Object.keys(G).map(k =>
+      `<button type="button" class="chip" data-g="${k}" aria-pressed="${k===active}">${G[k][i()]}</button>`).join('');
+    const pool = A.filter(r => !active || r[1] === active);
+    const yearOf = r => parseInt(String(r[0]).replace(/[^0-9]+/g,''),10);
+    const isRecent = r => /^(seit|laufend)/.test(String(r[0])) || yearOf(r) >= RECENT;
+    const rows = showAll ? pool : pool.filter(isRecent);
+    let prev = null;
+    document.getElementById('list').innerHTML = rows.map(r => {
+      const yr = r[0] === prev ? '' : (lang==='en' ? String(r[0]).replace('seit','since').replace('laufend','ongoing') : r[0]); prev = r[0];
+      const kind = r[2+i()], venue = (r[5+i()]||'').trim();
+      return `<li><span class="y">${yr}</span><span><span class="kind">${esc(kind)}</span>${esc(r[4])}${r[7] ? ` <a href="${esc(r[7])}" aria-label="Link: ${esc(r[4])}">↗</a>` : ''}${venue ? `<span class="sub">${esc(venue)}</span>` : ''}</span></li>`;
+    }).join('');
+    const older = pool.filter(r => !isRecent(r)).length;
+    const more = document.getElementById('more');
+    more.hidden = older === 0;
+    more.setAttribute('aria-expanded', showAll);
+    more.textContent = showAll ? (lang==='de' ? 'Weniger anzeigen' : 'Show less')
+                               : (lang==='de' ? `Archiv anzeigen (${older} ältere)` : `Show archive (${older} earlier)`);
   }
-  function renderList(){
-    const rows = A.filter(r => !active || r[1]===active);
-    const years = [...new Set(rows.map(r => r[0]))];
-    document.getElementById('years').innerHTML = years.map(y => `
-      <h3 class="year">${y}</h3>
-      <ul class="acts">${rows.filter(r => r[0]===y).map(r => `
-        <li>
-          <span class="dot" style="background:${color(r[1])}" aria-hidden="true"></span>
-          <span><span class="kind">${esc(r[2])}:</span> »${esc(r[3])}«${r[5] ? ` <a href="${esc(r[5])}" aria-label="Link: ${esc(r[3])}">↗</a>` : ''}<span class="sub">${esc(r[4])}</span></span>
-        </li>`).join('')}
-      </ul>`).join('');
-  }
-  document.getElementById('swatches').addEventListener('click', e => {
+  document.querySelector('.lang').addEventListener('click', e => {
     const b = e.target.closest('button'); if(!b) return;
-    active = (b.dataset.g===active) ? null : b.dataset.g;
-    renderSwatches(); renderList();
+    lang = b.dataset.set; try { localStorage.setItem('lang', lang); } catch(e) {}
+    render();
   });
-  renderSwatches(); renderList();
+  document.getElementById('chips').addEventListener('click', e => {
+    const b = e.target.closest('button'); if(!b) return;
+    active = (b.dataset.g === active) ? null : b.dataset.g; render();
+  });
+  document.getElementById('more').addEventListener('click', () => { showAll = !showAll; render(); });
+  render();
 </script>
 </body>
 </html>
